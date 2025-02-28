@@ -1,0 +1,33 @@
+#define BUZZER_PIN 6  // Buzzer pin
+#define LED_PIN 7     // LED pin
+
+int fillPercentage = 0;  // Start with an empty bin
+
+void setup() {
+    Serial.begin(9600);
+    pinMode(BUZZER_PIN, OUTPUT);
+    pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+    fillPercentage += random(5, 20);  // Simulate auto bin filling
+
+    if (fillPercentage > 100) fillPercentage = 100;  // Limit max to 100%
+
+    Serial.print("Bin Fill Level: ");
+    Serial.print(fillPercentage);
+    Serial.println("%");
+
+    if (fillPercentage >= 80) {  // If bin is 80% full
+        Serial.println("ALERT: Bin Full!");
+        digitalWrite(LED_PIN, HIGH);
+        digitalWrite(BUZZER_PIN, HIGH);
+        delay(1000);
+        digitalWrite(BUZZER_PIN, LOW);
+    } else {
+        digitalWrite(LED_PIN, LOW);
+        digitalWrite(BUZZER_PIN, LOW);
+    }
+
+    delay(2000);  // Simulate time delay for filling
+}
