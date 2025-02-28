@@ -1,0 +1,25 @@
+% Define number of bins
+numBins = 10; % ✅ Ensure numBins is defined before using it
+
+% Generate random bin fill levels (0 to 100%)
+binLevel = randi([0, 100], 1, numBins); 
+
+% Define alert threshold (80%)
+alertThreshold = 80;
+alerts = binLevel >= alertThreshold;
+
+% Display results
+disp("Bin Fill Levels: ");
+disp(binLevel);
+
+disp("Alerts (1 = Bin Full, 0 = Bin OK): ");
+disp(alerts);
+
+% ✅ Ensure numBins is defined before the loop
+for i = 1:numBins
+    if alerts(i)
+        fprintf("🚨 Alert: Bin %d is Full! Maintenance Required.\n", i);
+    else
+        fprintf("✅ Bin %d is OK.\n", i);
+    end
+end
