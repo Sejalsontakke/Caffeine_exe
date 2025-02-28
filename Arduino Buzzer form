@@ -1,0 +1,27 @@
+#define ALERT_THRESHOLD 80
+
+void setup() {
+    Serial.begin(9600); // Start Serial Monitor
+    randomSeed(analogRead(0)); // Initialize random number generator
+
+    Serial.println("Simulating Bin Fill Level (0-100%)");
+
+    for (int i = 0; i < 10; i++) {
+        int binLevel = random(0, 101); // Generate a random bin level (0-100)
+        Serial.print("Bin Level: ");
+        Serial.print(binLevel);
+        Serial.print("% -> ");
+
+        if (binLevel >= ALERT_THRESHOLD) {
+            Serial.println("ALERT: Bin Full!");
+        } else {
+            Serial.println("Bin OK");
+        }
+        
+        delay(1000); // Simulate delay between readings
+    }
+}
+
+void loop() {
+    // Nothing needed in loop() for this one-time simulation
+}
