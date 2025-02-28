@@ -1,0 +1,10 @@
+% Simulating Bin Fill Level (0-100%)
+binLevel = randi([0, 100], 1, 10); % Generates 10 random values
+disp("Bin Fill Levels: ");
+disp(binLevel);
+
+% Detect when bin is full (threshold 80%)
+alertThreshold = 80;
+alerts = binLevel >= alertThreshold;
+disp("Alerts (1 = Bin Full, 0 = Bin OK): ");
+disp(alerts);
